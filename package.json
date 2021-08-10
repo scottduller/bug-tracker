@@ -1,34 +1,32 @@
 {
 	"name": "bug-tracker",
 	"version": "1.0.0",
-	"description": "",
-	"main": "index.js",
-	"proxy": "http://localhost:3000",
+	"description": "A bug tracking application",
+	"main": "server.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"build": "cd client && yarn build",
-		"install-client": "cd client && yarn",
-		"heroku-postbuild": "yarn install-client && yarn build",
-		"server": "nodemon server/index.js",
-		"develop": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\"",
-		"start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\""
+		"start": "node server/server",
+		"server": "nodemon server/server",
+		"client": "yarn --cwd client start",
+		"dev": "concurrently \"npm run client\" \"npm run server\"",
+		"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn --cwd client && yarn --cwd client build"
 	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/scottduller/bug-tracker.git"
 	},
 	"author": "Scott Duller",
-	"license": "ISC",
+	"license": "MIT",
 	"bugs": {
 		"url": "https://github.com/scottduller/bug-tracker/issues"
 	},
 	"homepage": "https://github.com/scottduller/bug-tracker#readme",
 	"dependencies": {
-		"concurrently": "^6.2.1",
-		"express": "^4.17.1",
-		"nodemon": "^2.0.12"
+		"colors": "^1.4.0",
+		"express": "^4.17.1"
 	},
 	"devDependencies": {
-		"eslint": "^7.32.0"
+		"concurrently": "^6.2.1",
+		"eslint": "^7.32.0",
+		"nodemon": "^2.0.12"
 	}
 }
