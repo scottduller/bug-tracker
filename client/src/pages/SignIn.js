@@ -5,7 +5,7 @@ import './SignIn.css';
 const SignIn = () => {
 	return (
 		<div className='wrapper'>
-			<h1 className='mb-5'>Sign In!</h1>
+			<h1 className='mb-5'>Sign in</h1>
 			<SignInForm />
 		</div>
 	);

@@ -1,49 +1,65 @@
 import React, { useState } from 'react';
+import { Formik, Field, Form, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 import './SignInForm.css';
 
 const SignUpForm = () => {
-	const [formData, setFormData] = useState({
-		email: '',
-		password: '',
-	});
-
-	const { email, password } = formData;
-
-	const onChange = (e) => {
-		setFormData({ ...formData, [e.target.name]: e.target.value });
-	};
-
-	const onSubmit = (e) => {
-		e.preventDefault();
-		alert(JSON.stringify(formData));
-	};
-
 	return (
-		<form onSubmit={onSubmit}>
-			<div className='mb-3'>
-				<input
-					type='email'
-					className='form-control'
-					placeholder='Email'
-					name='email'
-					value={email}
-					onChange={onChange}
-				/>
-			</div>
-			<div className='mb-3'>
-				<input
-					type='password'
-					className='form-control'
-					placeholder='Password (at least 8 characters long)'
-					name='password'
-					value={password}
-					onChange={onChange}
-				/>
-			</div>
-			<button type='submit' className='btn btn-primary w-100'>
-				Sign In
-			</button>
-		</form>
+		<Formik
+			initialValues={{
+				email: '',
+				password: '',
+			}}
+			validationSchema={Yup.object({
+				// TODO: Check credentials against API for submission
+				email: Yup.string()
+					.email('* Invalid email address')
+					.required('* Please enter a valid email'),
+				password: Yup.string().required('* Invalid password'),
+			})}
+			onSubmit={(values, { setSubmitting }) => {
+				setTimeout(() => {
+					alert(JSON.stringify(values, null, 2));
+					setSubmitting(false);
+				}, 400);
+			}}
+		>
+			<Form>
+				<div className='mb-3'>
+					<Field
+						className='form-control'
+						placeholder='Email'
+						name='email'
+					/>
+					<ErrorMessage
+						name='email'
+						render={(msg) => (
+							<div className='text-danger'>{msg}</div>
+						)}
+					/>
+				</div>
+				<div className='mb-3'>
+					<Field
+						type='password'
+						className='form-control'
+						placeholder='Password'
+						name='password'
+					/>
+					<ErrorMessage
+						name='password'
+						render={(msg) => (
+							<div className='text-danger'>{msg}</div>
+						)}
+					/>
+				</div>
+				<button
+					type='submit'
+					className='btn btn-primary w-100'
+				>
+					Sign In
+				</button>
+			</Form>
+		</Formik>
 	);
 };
 

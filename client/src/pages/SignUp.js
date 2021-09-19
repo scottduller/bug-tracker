@@ -12,7 +12,7 @@ const SignUp = () => {
 		// 	<div className='right-container p-4'></div>
 		// </div>
 		<div className='wrapper'>
-			<h1 className='mb-5'>Register for free today!</h1>
+			<h1 className='mb-5'>Register</h1>
 			<SignUpForm />
 		</div>
 	);
