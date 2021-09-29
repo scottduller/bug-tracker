@@ -166,7 +166,7 @@ const SignUpForm = () => {
 					</div>
 					<button
 						type='submit'
-						className='btn btn-primary w-100'
+						className='btn btn-emphasis w-100 text-white'
 					>
 						Sign Up
 					</button>
