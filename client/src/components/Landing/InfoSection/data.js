@@ -1,13 +1,8 @@
-import svg2 from '../../../assets/images/svg2.svg';
-import svg3 from '../../../assets/images/svg3.svg';
-import svg4 from '../../../assets/images/svg4.svg';
-
 const data = [
 	{
 		id: 'about',
 		reverse: false,
 		lightBg: true,
-		img: svg2,
 		topLine: 'About',
 		headline:
 			'Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, soluta!',
@@ -18,7 +13,6 @@ const data = [
 		id: 'discover',
 		reverse: true,
 		lightBg: false,
-		img: svg3,
 		topLine: 'Discover',
 		headline:
 			'Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, soluta!',
@@ -29,7 +23,6 @@ const data = [
 		id: 'features',
 		reverse: false,
 		lightBg: true,
-		img: svg4,
 		topLine: 'Features',
 		headline:
 			'Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, soluta!',

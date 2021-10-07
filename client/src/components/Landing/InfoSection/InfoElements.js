@@ -1,45 +1,77 @@
 import styled from 'styled-components';
+import { Row, Column } from '../../shared/SharedElements';
 
-export const InfoRow = styled.div`
-	display: flex;
-	flex-direction: ${({ reverse }) =>
-		reverse ? 'row-reverse' : 'row'};
-	width: 100%;
-	padding: 5rem 0;
+export const InfoRow = styled(Row)`
 	background-color: ${({ lightBg, theme }) =>
 		lightBg ? '#fff' : theme.colours.tertiary};
-	&:after {
-		clear: both;
-		content: '';
+	padding: 6rem 0 !important;
+	flex-direction: column-reverse;
+	height: 100%;
+	@media screen and (min-width: ${({ theme }) =>
+			theme.breakpoints.laptop}) {
+		flex-direction: ${({ reverse }) =>
+			reverse ? 'row-reverse' : 'row'};
 	}
 `;
 
-export const InfoColumn = styled.div`
-	width: calc((100% / 12) * ${(props) => props.columns});
-`;
+export const InfoColumn = styled(Column)``;
 
 export const InfoImageWrap = styled.div`
 	height: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding: ${({ reverse }) =>
-		reverse ? '0 0 0 8rem' : '0 8rem 0 0'};
+	padding-bottom: 3rem;
+
+	@media screen and (min-width: ${({ theme }) =>
+			theme.breakpoints.laptop}) {
+		padding: ${({ reverse }) =>
+			reverse ? '0 0 0 4rem' : '0 4rem 0 0'};
+	}
+
+	@media screen and (min-width: ${({ theme }) =>
+			theme.breakpoints.desktop}) {
+		padding: ${({ reverse }) =>
+			reverse ? '0 0 0 6rem' : '0 6rem 0 0'};
+	}
+
+	@media screen and (min-width: ${({ theme }) =>
+			theme.breakpoints.tv}) {
+		padding: ${({ reverse }) =>
+			reverse ? '0 0 0 8rem' : '0 8rem 0 0'};
+	}
 `;
 
 export const InfoImage = styled.img`
-	width: 100%;
+	width: 50%;
+	@media screen and (min-width: ${({ theme }) =>
+			theme.breakpoints.laptop}) {
+		width: 80%;
+	}
 `;
 
 export const InfoTextWrap = styled.div`
+	text-align: center;
 	height: 100%;
+	width: 100%;
+	max-width: 80%;
 	display: flex;
 	flex-direction: column;
-	align-items: ${({ reverse }) =>
-		reverse ? 'flex-start' : 'flex-end'};
+	align-items: center;
 	justify-content: center;
-	text-align: ${({ reverse }) => (reverse ? 'left' : 'right')};
-	padding: 0 8rem;
+	margin: auto;
+
+	@media screen and (min-width: ${({ theme }) =>
+			theme.breakpoints.laptop}) {
+		align-items: ${({ reverse }) =>
+			reverse ? 'flex-start' : 'flex-end'};
+		text-align: ${({ reverse }) => (reverse ? 'left' : 'right')};
+	}
+
+	@media screen and (min-width: ${({ theme }) =>
+			theme.breakpoints.desktop}) {
+		padding: 0 4rem;
+	}
 `;
 
 export const InfoTopLine = styled.h3`

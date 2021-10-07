@@ -5,6 +5,7 @@ const theme = {
 		tertiary: '#ffe9b2',
 		emphasis: '#ff8500',
 		dark: '#303030',
+		shadow: '#999999',
 	},
 	breakpoints: {
 		mobile: '320px',

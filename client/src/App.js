@@ -14,6 +14,7 @@ import SignUp from './pages/SignUp';
 import TermsOfService from './pages/TermsOfService';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import PageNotFound from './pages/PageNotFound';
+import Dashboard from './pages/Dashboard';
 
 function App() {
 	return (
@@ -32,6 +33,10 @@ function App() {
 						<Route
 							path='/site-policy/privacy-policy'
 							component={PrivacyPolicy}
+						/>
+						<Route
+							path='/dashboard'
+							component={Dashboard}
 						/>
 						<Route component={PageNotFound} />
 					</Switch>

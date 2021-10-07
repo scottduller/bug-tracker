@@ -11,11 +11,17 @@ import {
 	InfoTopLine,
 } from './InfoElements';
 import data from './data';
+import images from './images';
 
 const Index = () => {
+	const info = data.map((dataItem) => ({
+		...dataItem,
+		...images.find((imageItem) => imageItem.id === dataItem.id),
+	}));
+
 	return (
 		<>
-			{data.map(
+			{info.map(
 				({
 					id,
 					reverse,

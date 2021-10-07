@@ -1,7 +1,15 @@
 const express = require('express');
+const cors = require('cors');
 const path = require('path');
 const morgan = require('morgan');
 require('colors');
+
+const jsonServer = require('json-server');
+
+const router = express.Router();
+const server = jsonServer.create();
+const middlewares = jsonServer.defaults();
+const dataRouter = jsonServer.router('./server/data/db.json');
 
 const app = express();
 
@@ -27,6 +35,12 @@ if (process.env.NODE_ENV === 'production') {
 		res.send('API is running....');
 	});
 }
+
+app.use(cors());
+
+router.use('/', dataRouter);
+
+app.use('/api', router);
 
 const PORT = process.env.PORT || 5000;
 

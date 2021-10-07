@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import data from './data';
+import React, { useState } from 'react';
 import { FaAngleUp } from 'react-icons/fa';
 import {
 	FAQContainer,
@@ -15,6 +14,7 @@ import {
 	FAQSec4,
 	FAQWrap,
 } from './FAQElements';
+import data from './data';
 const Index = () => {
 	const [checkedData, setCheckedData] = useState(
 		data.map((question) => ({

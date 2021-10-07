@@ -1,8 +1,8 @@
 import React from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import './SignUpForm.css';
 import { Link } from 'react-router-dom';
+import api from '../../utils/api';
 
 const SignUpForm = () => {
 	return (
@@ -23,22 +23,42 @@ const SignUpForm = () => {
 					lastName: Yup.string()
 						.max(20, '* Must be 20 characters or less')
 						.required('* Please enter your last name'),
-					//TODO: Validate email against API
 					email: Yup.string()
 						.email('* Invalid email address')
-						.required('* Please enter a valid email'),
+						.required('* Please enter a valid email')
+						.test(
+							'unique-email',
+							'* Email already in use',
+							function (value) {
+								return new Promise(
+									(resolve, reject) => {
+										api.get(
+											`/users?email=${value}`
+										)
+											.then((res) => {
+												if (res.data.length)
+													throw new Error();
+												resolve(true);
+											})
+											.catch(() => {
+												resolve(false);
+											});
+									}
+								);
+							}
+						),
 					password: Yup.string()
-						.required(
-							'* Please enter a valid password (at least 1 uppercase, 1 lowercase, 1 special character, 1 number and a minimum of 8 characters)'
-						)
+						.required('* Please enter a valid password')
 						.matches(
 							/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
 							'* Please enter a valid password (at least 1 uppercase, 1 lowercase, 1 special character, 1 number and a minimum of 8 characters)'
 						),
-					confirmPassword: Yup.string().oneOf(
-						[Yup.ref('password'), null],
-						'* Passwords must match'
-					),
+					confirmPassword: Yup.string()
+						.required('* Please enter a valid password')
+						.oneOf(
+							[Yup.ref('password'), null],
+							'* Passwords must match'
+						),
 					agreeTerm: Yup.boolean()
 						.required(
 							'* Please read and accept the terms and conditions.'
@@ -144,7 +164,7 @@ const SignUpForm = () => {
 						/>
 						<label
 							className='form-check-label'
-							for='agree'
+							htmlFor='agree'
 						>
 							I agree to the{' '}
 							<Link to='/site-policy/terms-of-service'>
@@ -167,6 +187,7 @@ const SignUpForm = () => {
 					<button
 						type='submit'
 						className='btn btn-emphasis w-100 text-white'
+						name='submit'
 					>
 						Sign Up
 					</button>

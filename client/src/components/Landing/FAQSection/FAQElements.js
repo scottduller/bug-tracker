@@ -5,7 +5,7 @@ export const FAQWrap = styled.div`
 	align-items: center;
 	justify-content: center;
 	background-color: ${({ theme }) => theme.colours.secondary};
-	padding: 8rem 0;
+	padding: 4rem 0 8rem 0;
 `;
 
 export const FAQContainer = styled.div`
@@ -23,6 +23,8 @@ export const FAQHeadline = styled.h1`
 `;
 
 export const FAQItem = styled.div`
+	max-width: ${({ theme }) => theme.breakpoints.laptop};
+	width: 90%;
 	box-shadow: 0px 2px 8px 0px rgb(0 0 0 / 10%);
 	margin-top: 1rem !important;
 `;
@@ -119,7 +121,7 @@ export const FAQSec3Span = styled.span`
 	text-transform: none;
 	color: #767676;
 	margin: 0;
-	padding: 0;
+	padding: 1rem 0 0.5rem 0;
 	display: none;
 	font-variant-ligatures: no-common-ligatures;
 

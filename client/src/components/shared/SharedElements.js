@@ -8,8 +8,8 @@ export const Page = styled.div`
 export const Container = styled.div`
 	padding: 0 20px;
 	margin: 0 auto;
-	width: ${({ theme }) => theme.breakpoints.tv};
-	max-width: 100%;
+	width: 100%;
+	max-width: ${({ theme }) => theme.breakpoints.tv};
 `;
 
 export const Flex = styled.div`
@@ -20,20 +20,29 @@ export const Flex = styled.div`
 
 export const Row = styled.div`
 	display: flex;
-	flex-direction: ${({ reverse }) =>
-		reverse ? 'row-reverse' : 'row'};
+	flex-direction: column;
 	width: 100%;
-	height: 100%;
 	&:after {
 		clear: both;
 		content: '';
 	}
+
+	@media screen and (min-width: ${({ theme }) =>
+			theme.breakpoints.laptop}) {
+		height: 100vh;
+		margin: 0;
+		flex-direction: ${({ reverse }) =>
+			reverse ? 'row-reverse' : 'row'};
+	}
 `;
 
 export const Column = styled.div`
-	width: calc((100% / 12) * ${(props) => props.columns});
 	background-color: ${(props) => props.bg || 'transparent'};
-	height: 100%;
+	width: 100%;
+	@media screen and (min-width: ${({ theme }) =>
+			theme.breakpoints.laptop}) {
+		width: calc((100% / 12) * ${(props) => props.columns});
+	}
 `;
 
 export const Button = styled.button`
@@ -51,5 +60,15 @@ export const Button = styled.button`
 	&:hover {
 		opacity: 0.9;
 		transform: scale(0.98);
+	}
+`;
+
+export const Title = styled.span`
+	font-size: ${(props) => props.size || '2rem'};
+	font-weight: ${(props) => props.weight || '400'};
+
+	@media screen and (min-width: ${({ theme }) =>
+			theme.breakpoints.laptop}) {
+		font-size: ${(props) => props.size || '3rem'};
 	}
 `;

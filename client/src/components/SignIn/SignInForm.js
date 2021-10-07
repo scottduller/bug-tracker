@@ -1,7 +1,6 @@
 import React from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import './SignInForm.css';
 
 const SignUpForm = () => {
 	return (
@@ -15,7 +14,9 @@ const SignUpForm = () => {
 				email: Yup.string()
 					.email('* Invalid email address')
 					.required('* Please enter a valid email'),
-				password: Yup.string().required('* Invalid password'),
+				password: Yup.string().required(
+					'* Please enter a valid password'
+				),
 			})}
 			onSubmit={(values, { setSubmitting }) => {
 				setTimeout(() => {
@@ -55,6 +56,7 @@ const SignUpForm = () => {
 				<button
 					type='submit'
 					className='btn btn-emphasis w-100 text-white'
+					name='submit'
 				>
 					Sign In
 				</button>

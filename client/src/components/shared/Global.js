@@ -4,13 +4,11 @@ const GlobalStyles = createGlobalStyle`
   * {
     box-sizing: border-box;
   }
-  html {
-  }
   body {
+    overflow-x: hidden;
     font-family: 'Rubik', sans-serif;
     font-size: 16px;
     margin: 0;
-    overflow-x: hidden;
   }
   a{
     text-decoration: none;

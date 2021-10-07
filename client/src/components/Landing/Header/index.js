@@ -1,15 +1,25 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useHistory, Link as LinkR } from 'react-router-dom';
-import { Header, Nav, Brand, Logo, NavLink } from './HeaderElements';
-import { Container, Button } from '../../shared/SharedElements';
+import {
+	Header,
+	Nav,
+	Brand,
+	Logo,
+	NavLink,
+	NavLinks,
+	NavLinkItem,
+	HeaderBtn,
+	Bars,
+	RegisterBtns,
+} from './HeaderElements';
+import { Container, Title } from '../../shared/SharedElements';
 import theme from '../../shared/theme';
-import { Title } from '../shared/SharedElements';
 import { FaSignInAlt } from 'react-icons/fa';
-import * as Scroll from 'react-scroll';
-import { Link as LinkS, animateScroll as scroll } from 'react-scroll';
 
 const Index = () => {
 	const [scrollNav, setScrollNav] = useState(false);
+
+	const [active, setActive] = useState(false);
 
 	const changeNav = () => {
 		if (window.scrollY >= 80) {
@@ -29,49 +39,114 @@ const Index = () => {
 		[history]
 	);
 
+	const handleActive = () => {
+		setActive(!active);
+	};
+
+	const handleSetInActive = () => {
+		setActive(false);
+	};
+
 	return (
-		<Header scrollNav={scrollNav}>
+		<Header
+      id='header'
+			scrollNav={scrollNav}
+			className={active ? 'active' : ''}
+		>
 			<Container>
-				<Nav>
-					<Brand to='hero'>
+				<Nav className={active ? 'active' : ''}>
+					<Brand
+						to='hero'
+						className={active ? 'active' : ''}
+						onClick={handleSetInActive}
+						activeClass='active'
+					>
 						<Logo colour={theme.colours.emphasis} />
-						<Title>BUG TRACKER</Title>
+						<Title size={'1.25rem'}>BUG TRACKER</Title>
 					</Brand>
-					<ul>
-						<li>
-							<NavLink to='about' offset={-80}>
+					<Bars
+						onClick={handleActive}
+						className={active ? 'active' : ''}
+					/>
+					<NavLinks className={active ? 'active' : ''}>
+						<NavLinkItem
+							className={active ? 'active' : ''}
+						>
+							<NavLink
+								to='about'
+								onClick={handleSetInActive}
+								offset={-80}
+								spy={true}
+								activeClass='active'
+							>
 								About
 							</NavLink>
-						</li>
-						<li>
-							<NavLink to='discover' offset={-80}>
+						</NavLinkItem>
+						<NavLinkItem
+							className={active ? 'active' : ''}
+						>
+							<NavLink
+								to='discover'
+								onClick={handleSetInActive}
+								offset={-80}
+								spy={true}
+								activeClass='active'
+							>
 								Discover
 							</NavLink>
-						</li>
-						<li>
-							<NavLink to='features' offset={-180}>
+						</NavLinkItem>
+						<NavLinkItem
+							className={active ? 'active' : ''}
+						>
+							<NavLink
+								to='features'
+								onClick={handleSetInActive}
+								offset={-80}
+								spy={true}
+								activeClass='active'
+							>
 								Features
 							</NavLink>
-						</li>
-						<li>
-							<NavLink to='faq' offset={-40}>
+						</NavLinkItem>
+						<NavLinkItem
+							className={active ? 'active' : ''}
+						>
+							<NavLink
+								to='faq'
+								onClick={handleSetInActive}
+								offset={-80}
+								spy={true}
+								activeClass='active'
+							>
 								FAQ
 							</NavLink>
-						</li>
-						<li>
-							<LinkR to='/sign-in'>Sign in</LinkR>
-						</li>
-						<li>
-							<Button
-								onClick={handleOnClick}
-								bg={theme.colours.emphasis}
-								colour='#fff'
+						</NavLinkItem>
+						<RegisterBtns>
+							<NavLinkItem
+								className={active ? 'active' : ''}
 							>
-								<FaSignInAlt />
-								<span>Sign Up</span>
-							</Button>
-						</li>
-					</ul>
+								<LinkR
+									to='/sign-in'
+									onClick={handleSetInActive}
+								>
+									Sign in
+								</LinkR>
+							</NavLinkItem>
+							<NavLinkItem
+								className={active ? 'active' : ''}
+							>
+								<HeaderBtn
+									className={active ? 'active' : ''}
+									onClick={handleOnClick}
+									bg={theme.colours.emphasis}
+									colour='#fff'
+								>
+									<FaSignInAlt />
+									<span>Sign Up</span>
+								</HeaderBtn>
+							</NavLinkItem>
+						</RegisterBtns>
+					</NavLinks>
 				</Nav>
 			</Container>
 		</Header>
