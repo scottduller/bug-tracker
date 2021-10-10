@@ -1,18 +1,7 @@
-import styled from 'styled-components';
-import { AiOutlineBug } from 'react-icons/ai';
+import styled from 'styled-components/macro';
 import { FaBars } from 'react-icons/fa';
 import { Button } from '../../shared/SharedElements';
 import { Link as LinkS } from 'react-scroll';
-
-export const Brand = styled(LinkS)`
-	padding: 0.5rem 1rem;
-	cursor: pointer;
-
-	&.active {
-		color: white;
-		margin-bottom: 1rem;
-	}
-`;
 
 export const Header = styled.header`
 	display: flex;
@@ -32,13 +21,6 @@ export const Header = styled.header`
 		height: 100vh;
 		background-color: ${({ theme }) => theme.colours.dark};
 	}
-`;
-
-export const Logo = styled(AiOutlineBug)`
-	vertical-align: top;
-	font-size: 1.75rem;
-	margin-right: 0.4rem;
-	color: ${({ colour }) => colour || '#333'};
 `;
 
 export const Nav = styled.nav`

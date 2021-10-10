@@ -3,8 +3,6 @@ import { useHistory, Link as LinkR } from 'react-router-dom';
 import {
 	Header,
 	Nav,
-	Brand,
-	Logo,
 	NavLink,
 	NavLinks,
 	NavLinkItem,
@@ -12,7 +10,12 @@ import {
 	Bars,
 	RegisterBtns,
 } from './HeaderElements';
-import { Container, Title } from '../../shared/SharedElements';
+import {
+	Container,
+	Title,
+	Brand,
+	Logo,
+} from '../../shared/SharedElements';
 import theme from '../../shared/theme';
 import { FaSignInAlt } from 'react-icons/fa';
 
@@ -49,7 +52,7 @@ const Index = () => {
 
 	return (
 		<Header
-      id='header'
+			id='header'
 			scrollNav={scrollNav}
 			className={active ? 'active' : ''}
 		>

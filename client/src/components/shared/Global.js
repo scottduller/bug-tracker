@@ -9,6 +9,7 @@ const GlobalStyles = createGlobalStyle`
     font-family: 'Rubik', sans-serif;
     font-size: 16px;
     margin: 0;
+    background-color: ${(props) => props.bgColour};
   }
   a{
     text-decoration: none;

@@ -1,20 +1,44 @@
 import React from 'react';
-import SignUpForm from '../components/SignUp/SignUpForm';
-import './SignUp.css';
+import styled from 'styled-components';
+import {
+	BgColumn,
+	ImageWrapper,
+	Row,
+} from '../components/SignUp/Page/PageElements';
+import SignUpForm from '../components/SignUp/Form';
+import {
+	AgreeText,
+	Link,
+} from '../components/SignUp/Form/FormElements';
+import Header from '../components/SignUp/Header';
+import svg5 from '../assets/images/svg5.svg';
 
 const SignUp = () => {
+	const FormWrapper = styled.div`
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		align-items: center;
+		@media screen and (min-width: ${({ theme }) =>
+				theme.breakpoints.desktop}) {
+			max-width: 50%;
+			margin: 0;
+		}
+	`;
+
 	return (
-		// <div className='wrapper'>
-		// 	<div className='left-container'>
-		// 		<h1 className='mb-5'>Register for free today!</h1>
-		// 		<SignUpForm />
-		// 	</div>
-		// 	<div className='right-container p-4'></div>
-		// </div>
-		<div className='wrapper'>
-			<h1 className='mb-5'>Register</h1>
-			<SignUpForm />
-		</div>
+		<>
+			<BgColumn />
+			<Header />
+			<Row>
+				<FormWrapper>
+					<SignUpForm />
+				</FormWrapper>
+				<ImageWrapper>
+					<img src={svg5} alt='hello' />
+				</ImageWrapper>
+			</Row>
+		</>
 	);
 };
 export default SignUp;

@@ -1,8 +1,11 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
+import { AiOutlineBug } from 'react-icons/ai';
+import { Link as LinkS } from 'react-scroll';
 
 export const Page = styled.div`
 	height: 100vh;
 	width: 100vw;
+	background-color: ${(props) => props.bg || 'transparent'};
 `;
 
 export const Container = styled.div`
@@ -14,7 +17,8 @@ export const Container = styled.div`
 
 export const Flex = styled.div`
 	display: flex;
-	align-items: flex-start;
+	align-items: ${({ align }) => align || 'flex-start'};
+	justify-content: center;
 	flex-direction: ${(props) => props.direction || 'column'};
 `;
 
@@ -56,6 +60,7 @@ export const Button = styled.button`
 	color: ${({ colour }) => colour || '#333'};
 	text-align: center;
 	vertical-align: middle;
+	width: ${({ width }) => width};
 
 	&:hover {
 		opacity: 0.9;
@@ -71,4 +76,21 @@ export const Title = styled.span`
 			theme.breakpoints.laptop}) {
 		font-size: ${(props) => props.size || '3rem'};
 	}
+`;
+
+export const Brand = styled(LinkS)`
+	padding: 0.5rem 1rem;
+	cursor: pointer;
+
+	&.active {
+		color: white;
+		margin-bottom: 1rem;
+	}
+`;
+
+export const Logo = styled(AiOutlineBug)`
+	vertical-align: top;
+	font-size: 1.75rem;
+	margin-right: 0.4rem;
+	color: ${({ colour }) => colour || '#333'};
 `;
