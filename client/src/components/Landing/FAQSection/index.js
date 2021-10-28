@@ -44,7 +44,7 @@ const Index = () => {
 				{checkedData.map(
 					({ id, title, content, checked }) => {
 						return (
-							<FAQItem>
+							<FAQItem key={id}>
 								<FAQInput
 									id={id}
 									role='checkbox'

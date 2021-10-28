@@ -6,7 +6,7 @@
 	"scripts": {
 		"start": "node server/server",
 		"server": "nodemon server/server",
-		"mockServer": "nodemon server/mockServer",
+		"mockServer": "cross-env NODE_ENV=development node server/mockServer",
 		"test": "cross-env NODE_ENV=test jest --forceExit --detectOpenHandles --passWithNoTests && cross-env NODE_ENV=test yarn --cwd client test",
 		"client": "yarn --cwd client start",
 		"dev": "concurrently \"npm run client\" \"npm run mockServer\"",

@@ -15,59 +15,28 @@ import TermsOfService from './pages/TermsOfService';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import PageNotFound from './pages/PageNotFound';
 import Dashboard from './pages/Dashboard';
-import { useState } from 'react';
 
 const App = () => {
-	const [bgColour, setBgColour] = useState('transparent');
-
 	return (
 		<ThemeProvider theme={theme}>
 			<>
-				<GlobalStyles bgColour={bgColour} />
+				<GlobalStyles />
 				<Router>
 					<Switch>
-						<Route
-							path='/'
-							exact
-							component={() => {
-								setBgColour('transparent');
-								return <Landing />;
-							}}
-						/>
-						<Route
-							path='/sign-up'
-							component={() => {
-								setBgColour(theme.colours.secondary);
-								return <SignUp />;
-							}}
-						/>
-						<Route
-							path='/sign-in'
-							component={() => {
-								setBgColour(theme.colours.secondary);
-								return <SignIn />;
-							}}
-						/>
+						<Route path='/' exact component={Landing} />
+						<Route path='/sign-up' component={SignUp} />
+						<Route path='/sign-in' component={SignIn} />
 						<Route
 							path='/site-policy/terms-of-service'
-							component={() => {
-								setBgColour('transparent');
-								return <TermsOfService />;
-							}}
+							component={TermsOfService}
 						/>
 						<Route
 							path='/site-policy/privacy-policy'
-							component={() => {
-								setBgColour('transparent');
-								return <PrivacyPolicy />;
-							}}
+							component={PrivacyPolicy}
 						/>
 						<Route
 							path='/dashboard'
-							component={() => {
-								setBgColour('transparent');
-								return <Dashboard />;
-							}}
+							component={Dashboard}
 						/>
 						<Route component={PageNotFound} />
 					</Switch>

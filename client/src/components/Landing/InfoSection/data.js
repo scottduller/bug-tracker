@@ -1,7 +1,7 @@
 const data = [
 	{
 		id: 'about',
-		reverse: false,
+		reverse: true,
 		lightBg: true,
 		topLine: 'About',
 		headline:
@@ -11,7 +11,7 @@ const data = [
 	},
 	{
 		id: 'discover',
-		reverse: true,
+		reverse: false,
 		lightBg: false,
 		topLine: 'Discover',
 		headline:
@@ -21,7 +21,7 @@ const data = [
 	},
 	{
 		id: 'features',
-		reverse: false,
+		reverse: true,
 		lightBg: true,
 		topLine: 'Features',
 		headline:

@@ -33,6 +33,7 @@ const Index = () => {
 				}) => (
 					<InfoRow
 						id={id}
+						key={id}
 						reverse={reverse}
 						lightBg={lightBg}
 					>

@@ -38,14 +38,13 @@ export const RegisterBtns = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	list-style: none;
 	@media screen and (min-width: ${({ theme }) =>
 			theme.breakpoints.laptop}) {
 		flex-direction: row;
-		margin-left: 1.5rem;
 	}
 	@media screen and (min-width: ${({ theme }) =>
 			theme.breakpoints.desktop}) {
-		margin-left: 5rem;
 	}
 `;
 
@@ -69,6 +68,7 @@ export const NavLinks = styled.ul`
 
 export const NavLinkItem = styled.li`
 	padding-right: 1rem;
+	font-weight: 800;
 
 	&.active {
 		padding: 0;
@@ -78,11 +78,11 @@ export const NavLinkItem = styled.li`
 `;
 
 export const HeaderBtn = styled(Button)`
-	padding: 0.55rem 1.25rem;
+	padding: 0.75em 2em;
 
 	svg {
-		margin-bottom: 0.19rem;
-		margin-right: 0.25rem;
+		margin-bottom: 0.15rem;
+		margin-left: 0.5rem;
 	}
 
 	&.active {

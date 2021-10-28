@@ -13,11 +13,16 @@ export const FooterWrapper = styled.footer`
 export const FooterRow = styled.div`
 	display: flex;
 	flex-wrap: wrap;
-	flex-direction: row;
+	flex-direction: column;
 	margin: auto;
 	width: 100%;
 	max-width: ${({ theme }) => theme.breakpoints.desktop};
 	justify-content: space-between;
+
+	@media screen and (min-width: ${({ theme }) =>
+			theme.breakpoints.desktop}) {
+		flex-direction: row;
+	}
 `;
 
 export const FooterColumn = styled.div`
@@ -74,7 +79,7 @@ export const BottomColumnContainer = styled.div`
 	color: ${({ theme }) => theme.colours.shadow};
 	text-align: center;
 	@media screen and (min-width: ${({ theme }) =>
-			theme.breakpoints.laptop}) {
+			theme.breakpoints.desktop}) {
 		width: unset;
 		text-align: left;
 		justify-content: space-between;
@@ -88,7 +93,7 @@ export const BottomFooterLink = styled(Link)`
 	text-align: center;
 	width: 100%;
 	@media screen and (min-width: ${({ theme }) =>
-			theme.breakpoints.laptop}) {
+			theme.breakpoints.desktop}) {
 		width: unset;
 		margin-right: 2rem;
 		text-align: left;

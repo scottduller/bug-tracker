@@ -9,7 +9,7 @@ const GlobalStyles = createGlobalStyle`
     font-family: 'Rubik', sans-serif;
     font-size: 16px;
     margin: 0;
-    background-color: ${(props) => props.bgColour};
+    background-color: #F5F6F8;
   }
   a{
     text-decoration: none;

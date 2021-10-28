@@ -124,32 +124,36 @@ const Index = () => {
 								FAQ
 							</NavLink>
 						</NavLinkItem>
-						<RegisterBtns>
-							<NavLinkItem
-								className={active ? 'active' : ''}
-							>
-								<LinkR
-									to='/sign-in'
-									onClick={handleSetInActive}
-								>
-									Sign in
-								</LinkR>
-							</NavLinkItem>
-							<NavLinkItem
-								className={active ? 'active' : ''}
-							>
-								<HeaderBtn
-									className={active ? 'active' : ''}
-									onClick={handleOnClick}
-									bg={theme.colours.emphasis}
-									colour='#fff'
-								>
-									<FaSignInAlt />
-									<span>Sign Up</span>
-								</HeaderBtn>
-							</NavLinkItem>
-						</RegisterBtns>
 					</NavLinks>
+					<RegisterBtns>
+						<NavLinkItem
+							className={active ? 'active' : ''}
+						>
+							<HeaderBtn
+								className={active ? 'active' : ''}
+								bg='white'
+								colour='black'
+								onClick={handleSetInActive}
+								to='/sign-in'
+							>
+								Login
+							</HeaderBtn>
+						</NavLinkItem>
+						<NavLinkItem
+							className={active ? 'active' : ''}
+						>
+							<HeaderBtn
+								className={active ? 'active' : ''}
+								onClick={handleOnClick}
+								bg={theme.colours.emphasis}
+								colour='#fff'
+								to='/sign-up'
+							>
+								Get Started
+								<FaSignInAlt />
+							</HeaderBtn>
+						</NavLinkItem>
+					</RegisterBtns>
 				</Nav>
 			</Container>
 		</Header>

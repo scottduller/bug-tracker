@@ -1,11 +1,12 @@
 import React from 'react';
-import Stub from '../components/Dashboard/Stub';
+import { Page } from '../components/Dashboard/Page/PageElements';
+import Sidebar from '../components/Dashboard/Sidebar';
 
 const Dashboard = () => {
 	return (
-		<>
-			<Stub />
-		</>
+		<Page>
+			<Sidebar />
+		</Page>
 	);
 };
 

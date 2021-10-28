@@ -1,14 +1,29 @@
 import React from 'react';
-import SignInForm from '../components/SignIn/SignInForm';
-import './SignIn.css';
+import {
+	BgColumn,
+	ImageWrapper,
+	Row,
+	FormWrapper,
+	Wrapper,
+} from '../components/SignIn/Page/PageElements';
+import SignInForm from '../components/SignIn/Form';
+import Header from '../components/SignIn/Header';
+import svg5 from '../assets/images/svg5.svg';
 
-const SignIn = () => {
+const SignUp = () => {
 	return (
-		<div className='wrapper'>
-			<h1 className='mb-5'>Sign in</h1>
-			<SignInForm />
-		</div>
+		<Wrapper>
+			<BgColumn />
+			<Header />
+			<Row>
+				<FormWrapper>
+					<SignInForm />
+				</FormWrapper>
+				<ImageWrapper>
+					<img src={svg5} alt='hello' />
+				</ImageWrapper>
+			</Row>
+		</Wrapper>
 	);
 };
-
-export default SignIn;
+export default SignUp;

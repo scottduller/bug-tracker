@@ -226,7 +226,7 @@ const generateData = async () => {
 const destroyData = () => {
 	const data = JSON.stringify({});
 
-	fs.writeFile('db.json', data, (err) => {
+	fs.writeFile('server/data/db.json', data, (err) => {
 		if (err) {
 			throw err;
 		}

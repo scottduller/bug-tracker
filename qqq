@@ -1,0 +1,120 @@
+[33mcommit 5e45be9d3a4e28a252121f27231241401b8e7524[m[33m ([m[1;36mHEAD -> [m[1;32mdevelop[m[33m, [m[1;31morigin/develop[m[33m)[m
+Author: scottduller <scottduller@gmail.com>
+Date:   Sun Oct 10 22:50:50 2021 +0100
+
+    Sign up layout and validation complete
+
+[33mcommit 138af43bc05653521bbfe5383ab6c7ea1743e748[m
+Author: scottduller <scottduller@gmail.com>
+Date:   Thu Oct 7 15:26:35 2021 +0100
+
+    Landing page responsive, signup validation complete
+
+[33mcommit 0f9434a8be3198afcd1207d0fef4abe083b1712d[m
+Author: scottduller <scottduller@gmail.com>
+Date:   Thu Sep 30 00:51:03 2021 +0100
+
+    Landing page completed for desktop view only
+
+[33mcommit 7fb6c0d693073e3cd0e8f8677339cd5b22ded005[m
+Author: scottduller <scottduller@gmail.com>
+Date:   Sun Sep 19 23:13:33 2021 +0100
+
+    React router, sign up/in validation complete
+
+[33mcommit 1f49ea7e1c17b80eb75853f8e24bd3546236eeb9[m
+Author: scottduller <scottduller@gmail.com>
+Date:   Tue Sep 14 21:53:39 2021 +0100
+
+    Complete MVP registration layouts
+
+[33mcommit 296e7bb51b47e7d2bd5a34515da171f6e68ff3ae[m
+Author: Scott Duller <scottduller@gmail.com>
+Date:   Tue Aug 10 14:35:55 2021 +0100
+
+    Ammended workflow
+
+[33mcommit 82e30008ac02997949b365ea0f56d066a7f86dec[m
+Author: Scott Duller <scottduller@gmail.com>
+Date:   Tue Aug 10 14:30:25 2021 +0100
+
+    linting removed for actions
+
+[33mcommit e542bf21f8125b50f96f07f5979a3490bc884eb6[m
+Author: Scott Duller <scottduller@gmail.com>
+Date:   Tue Aug 10 14:19:46 2021 +0100
+
+    Attempt at cicd
+
+[33mcommit a0382cd274a0c5d52ce4a9c0c4412bc0dac2d18c[m
+Author: Scott Duller <scottduller@gmail.com>
+Date:   Tue Aug 10 13:06:41 2021 +0100
+
+    Ammended _dirname
+
+[33mcommit e2993f4c33c4f702d3cb5e0127289f9733b5c4e9[m
+Author: Scott Duller <scottduller@gmail.com>
+Date:   Tue Aug 10 12:57:34 2021 +0100
+
+    Amended procfile
+
+[33mcommit 8424ee09e3f5f2326bf927e9d8ace9d93fea8cf1[m
+Author: Scott Duller <scottduller@gmail.com>
+Date:   Tue Aug 10 12:52:33 2021 +0100
+
+    Command changes
+
+[33mcommit f43862bdc7c68c19229fc0ff0c3108e1d7a82567[m
+Author: Scott Duller <scottduller@gmail.com>
+Date:   Tue Aug 10 12:12:03 2021 +0100
+
+    change routes
+
+[33mcommit 5d74aee9c78ebae8b66fe9f3aadd8ecb50d16f1d[m
+Author: Scott Duller <scottduller@gmail.com>
+Date:   Tue Aug 10 12:04:17 2021 +0100
+
+    Refactored folders
+
+[33mcommit 7d28cd5ec91b2d45291a7cdc887f66b1b4bc72db[m
+Author: Scott Duller <scottduller@gmail.com>
+Date:   Tue Aug 10 11:28:27 2021 +0100
+
+    Added missing dependencies
+
+[33mcommit ed3d3c9c26d14725a1dc59795513faac4c9055d8[m
+Merge: 40a9086 226bb58
+Author: Scott Duller <scottduller@gmail.com>
+Date:   Tue Aug 10 11:20:23 2021 +0100
+
+    Merge branch 'develop' of https://github.com/scottduller/bug-tracker into develop
+
+[33mcommit 226bb58c63a7bb45e2b6a7fe7b5e67239fdd9800[m[33m ([m[1;32mmain[m[33m)[m
+Author: scottduller <scottduller@gmail.com>
+Date:   Mon Aug 9 14:07:01 2021 +0100
+
+    Deploy bug fix
+
+[33mcommit 5ecafc0b56f7790d5f14627b91664258c8c0cf15[m
+Author: scottduller <scottduller@gmail.com>
+Date:   Mon Aug 9 13:59:21 2021 +0100
+
+    Intital heroku and removed docker
+
+[33mcommit 40a9086a1ab791c11d5dea95680250f14a1e55d9[m
+Author: Scott Duller <scottduller@gmail.com>
+Date:   Sun Aug 8 17:59:05 2021 +0100
+
+    removed docker
+
+[33mcommit c140bbaba8e95c7dcfeda0754d673d732b41f11c[m
+Author: Scott Duller <scottduller@gmail.com>
+Date:   Sun Aug 8 16:57:19 2021 +0100
+
+    Initial project and docker
+
+[33mcommit ca8260e35594f4d3206ee4ea2cd5c1c685cfecb8[m
+Author: Scott Owen Duller <s.o.duller@gmail.com>
+Date:   Sun Aug 8 14:48:40 2021 +0100
+
+    Initial commit

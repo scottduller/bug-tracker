@@ -50,12 +50,12 @@ export const Column = styled.div`
 `;
 
 export const Button = styled.button`
-	border-radius: 10px;
+	border-radius: 50px;
 	border: none;
-	box-shadow: ${({ theme }) => theme.colours.emphasis} 0px 0px 10px;
+	box-shadow: 0px 5px 15px 3px rgba(0, 0, 0, 0.1);
 	cursor: pointer;
 	font-weight: 400;
-	padding: 0.75rem 2rem;
+	padding: 1em 3em;
 	background-color: ${({ bg }) => bg || '#fff'};
 	color: ${({ colour }) => colour || '#333'};
 	text-align: center;
@@ -71,7 +71,6 @@ export const Button = styled.button`
 export const Title = styled.span`
 	font-size: ${(props) => props.size || '2rem'};
 	font-weight: ${(props) => props.weight || '400'};
-
 	@media screen and (min-width: ${({ theme }) =>
 			theme.breakpoints.laptop}) {
 		font-size: ${(props) => props.size || '3rem'};
@@ -92,5 +91,6 @@ export const Logo = styled(AiOutlineBug)`
 	vertical-align: top;
 	font-size: 1.75rem;
 	margin-right: 0.4rem;
+
 	color: ${({ colour }) => colour || '#333'};
 `;

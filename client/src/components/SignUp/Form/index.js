@@ -1,6 +1,7 @@
 import React from 'react';
 import * as Yup from 'yup';
 import { ErrorMessage, Formik } from 'formik';
+import { v4 as uuidv4 } from 'uuid';
 import {
 	Form,
 	Field,
@@ -16,8 +17,31 @@ import {
 import { Button } from '../../shared/SharedElements';
 import theme from '../../shared/theme';
 import api from '../../../utils/api';
+import { useHistory } from 'react-router';
 
-const index = () => {
+const Index = () => {
+	const history = useHistory();
+	const handleSubmit = async (data) => {
+		const { firstName, lastName, email, password } = data;
+
+		const res = await api.post('/users', {
+			id: uuidv4(),
+			firstName,
+			lastName,
+			bio: '',
+			email,
+			password,
+			firstLogin: true,
+			createdAt: new Date().toISOString(),
+			lastLogin: new Date().toISOString(),
+		});
+
+		if (res.status < 300) {
+			localStorage.setItem('user', JSON.stringify(res.data[0]));
+			history.push('/dashboard');
+		}
+	};
+
 	return (
 		<FormWrapper>
 			<Formik
@@ -27,7 +51,6 @@ const index = () => {
 					email: '',
 					password: '',
 					confirmPassword: '',
-					agreeTerm: false,
 				}}
 				validationSchema={Yup.object({
 					firstName: Yup.string()
@@ -45,17 +68,22 @@ const index = () => {
 							function (value) {
 								return new Promise(
 									(resolve, reject) => {
-										api.get(
-											`/users?email=${value}`
-										)
-											.then((res) => {
-												if (res.data.length)
-													throw new Error();
-												resolve(true);
-											})
-											.catch(() => {
-												resolve(false);
-											});
+										if (value) {
+											api.get(
+												`/users?email=${value}`
+											)
+												.then((res) => {
+													if (
+														res.data
+															.length
+													)
+														throw new Error();
+													resolve(true);
+												})
+												.catch(() => {
+													resolve(false);
+												});
+										}
 									}
 								);
 							}
@@ -72,23 +100,12 @@ const index = () => {
 							[Yup.ref('password'), null],
 							'Passwords must match'
 						),
-					agreeTerm: Yup.boolean()
-						.required(
-							'Please read and accept the terms and conditions.'
-						)
-						.oneOf(
-							[true],
-							'Please read and accept the terms and conditions.'
-						),
 				})}
-				onSubmit={(values, { setSubmitting }) => {
-					setTimeout(() => {
-						alert(JSON.stringify(values, null, 2));
-						setSubmitting(false);
-					}, 400);
-				}}
+				onSubmit={async (values) =>
+					await handleSubmit(values)
+				}
 			>
-				{({ errors, touched }) => (
+				{({ errors, touched, isSubmitting }) => (
 					<Form>
 						<HeaderText>Sign Up Free</HeaderText>
 						<NameGroup>
@@ -105,6 +122,7 @@ const index = () => {
 									}
 									type='text'
 									name='firstName'
+									autoComplete='given-name'
 								/>
 								<ErrorMessage
 									name='firstName'
@@ -126,6 +144,7 @@ const index = () => {
 									}
 									type='text'
 									name='lastName'
+									autoComplete='family-name'
 								/>
 								<ErrorMessage
 									name='lastName'
@@ -145,6 +164,7 @@ const index = () => {
 								}
 								type='email'
 								name='email'
+								autoComplete='email'
 							/>
 							<ErrorMessage
 								name='email'
@@ -162,6 +182,7 @@ const index = () => {
 								}
 								type='password'
 								name='password'
+								autoComplete='new-password'
 							/>
 							<ErrorMessage
 								name='password'
@@ -181,6 +202,7 @@ const index = () => {
 								}
 								type='password'
 								name='confirmPassword'
+								autoComplete='new-password'
 							/>
 							<ErrorMessage
 								name='confirmPassword'
@@ -213,6 +235,8 @@ const index = () => {
 								bg={theme.colours.emphasis}
 								colour='white'
 								width='100%'
+								type='submit'
+								disabled={isSubmitting}
 							>
 								Get started free
 							</Button>
@@ -224,4 +248,4 @@ const index = () => {
 	);
 };
 
-export default index;
+export default Index;
