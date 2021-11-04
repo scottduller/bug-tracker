@@ -19,6 +19,7 @@ import {
 	Top,
 	Wrapper,
 } from './SidebarElements';
+import api from '../../../utils/api';
 
 const Index = () => {
 	const history = useHistory();

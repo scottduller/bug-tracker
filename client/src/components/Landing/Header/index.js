@@ -37,8 +37,13 @@ const Index = () => {
 	}, []);
 
 	const history = useHistory();
-	const handleOnClick = useCallback(
+	const handleRegister = useCallback(
 		() => history.push('/sign-up'),
+		[history]
+	);
+
+	const handleLogin = useCallback(
+		() => history.push('/sign-in'),
 		[history]
 	);
 
@@ -133,8 +138,7 @@ const Index = () => {
 								className={active ? 'active' : ''}
 								bg='white'
 								colour='black'
-								onClick={handleSetInActive}
-								to='/sign-in'
+								onClick={handleLogin}
 							>
 								Login
 							</HeaderBtn>
@@ -144,10 +148,9 @@ const Index = () => {
 						>
 							<HeaderBtn
 								className={active ? 'active' : ''}
-								onClick={handleOnClick}
+								onClick={handleRegister}
 								bg={theme.colours.emphasis}
 								colour='#fff'
-								to='/sign-up'
 							>
 								Get Started
 								<FaSignInAlt />
