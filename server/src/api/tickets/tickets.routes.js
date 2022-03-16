@@ -8,7 +8,7 @@ const {
   getTicketById,
   updateTicketById,
   deleteTicketById,
-} = require('../controllers/ticketController');
+} = require('./tickets.controllers');
 
 router.route('/').post(createTicket).get(getTickets);
 

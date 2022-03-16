@@ -8,7 +8,7 @@ const {
   getStatusById,
   updateStatusById,
   deleteStatusById,
-} = require('../controllers/statusController');
+} = require('./statuses.controllers');
 
 router.route('/').post(createStatus).get(getStatuses);
 

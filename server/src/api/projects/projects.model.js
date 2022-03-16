@@ -1,6 +1,7 @@
 /* eslint-disable global-require */
 const { Model } = require('objection');
 
+const schema = require('./projects.schema.json');
 const tableNames = require('../../constants/tableNames');
 
 class Project extends Model {
@@ -8,11 +9,15 @@ class Project extends Model {
     return tableNames.project;
   }
 
+  static get jsonSchema() {
+    return schema;
+  }
+
   static get relationMappings() {
-    const User = require('./User');
-    const Status = require('./Status');
-    const Organisation = require('./Organisation');
-    const Ticket = require('./Ticket');
+    const User = require('../users/users.model');
+    const Status = require('../statuses/statuses.model');
+    const Organisation = require('../organisations/organisations.model');
+    const Ticket = require('../tickets/tickets.model');
 
     return {
       owner: {
@@ -27,8 +32,8 @@ class Project extends Model {
         relation: Model.BelongsToOneRelation,
         modelClass: Organisation,
         join: {
-          from: `${tableNames.project}.${tableNames.Organisation}_id`,
-          to: `${tableNames.Organisation}.id`,
+          from: `${tableNames.project}.${tableNames.organisation}_id`,
+          to: `${tableNames.organisation}.id`,
         },
       },
       users: {
@@ -37,8 +42,8 @@ class Project extends Model {
         join: {
           from: `${tableNames.project}.id`,
           through: {
-            from: `${tableNames.user}_${tableNames.project}.${tableNames.project}_id`,
-            to: `${tableNames.user}_${tableNames.project}.${tableNames.user}_id`,
+            from: `${tableNames.user_project}.${tableNames.project}_id`,
+            to: `${tableNames.user_project}.${tableNames.user}_id`,
           },
           to: `${tableNames.user}.id`,
         },

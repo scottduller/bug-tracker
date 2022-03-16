@@ -1,0 +1,25 @@
+{
+  "required": ["name", "description", "owner_id", "created_at", "updated_at"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "example": "Organisation name"
+    },
+    "description": {
+      "type": "string",
+      "example": "Organisation description"
+    },
+    "owner_id": {
+      "type": "number",
+      "example": "3"
+    },
+    "created_at": {
+      "type": "string",
+      "example": "Date"
+    },
+    "updated_at": {
+      "type": "string",
+      "example": "Date"
+    }
+  }
+}

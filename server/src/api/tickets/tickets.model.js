@@ -1,6 +1,7 @@
 /* eslint-disable global-require */
 const { Model } = require('objection');
 
+const schema = require('./tickets.schema.json');
 const tableNames = require('../../constants/tableNames');
 
 class Ticket extends Model {
@@ -8,11 +9,15 @@ class Ticket extends Model {
     return tableNames.ticket;
   }
 
+  static get jsonSchema() {
+    return schema;
+  }
+
   static get relationMappings() {
-    const Project = require('./Project');
-    const User = require('./User');
-    const Status = require('./Status');
-    const Comment = require('./Comment');
+    const Project = require('../projects/projects.model');
+    const User = require('../users/users.model');
+    const Status = require('../statuses/statuses.model');
+    const Comment = require('../comments/comments.model');
 
     return {
       owner: {
@@ -23,14 +28,6 @@ class Ticket extends Model {
           to: `${tableNames.user}.id`,
         },
       },
-      status: {
-        relation: Model.BelongsToOneRelation,
-        modelClass: Status,
-        join: {
-          from: `${tableNames.ticket}.${tableNames.status}_id`,
-          to: `${tableNames.status}.id`,
-        },
-      },
       project: {
         relation: Model.BelongsToOneRelation,
         modelClass: Project,
@@ -39,11 +36,19 @@ class Ticket extends Model {
           to: `${tableNames.project}.id`,
         },
       },
-      tickets: {
+      status: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: Status,
+        join: {
+          from: `${tableNames.ticket}.${tableNames.status}_id`,
+          to: `${tableNames.status}.id`,
+        },
+      },
+      comments: {
         relation: Model.HasManyRelation,
         modelClass: Comment,
         join: {
-          from: `${tableNames.Ticket}.id`,
+          from: `${tableNames.ticket}.id`,
           to: `${tableNames.comment}.${tableNames.ticket}_id`,
         },
       },

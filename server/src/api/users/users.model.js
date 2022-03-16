@@ -1,6 +1,7 @@
 /* eslint-disable global-require */
 const { Model } = require('objection');
 
+const schema = require('./users.schema.json');
 const tableNames = require('../../constants/tableNames');
 
 class User extends Model {
@@ -8,11 +9,15 @@ class User extends Model {
     return tableNames.user;
   }
 
+  static get jsonSchema() {
+    return schema;
+  }
+
   static get relationMappings() {
-    const Organisation = require('./Organisation');
-    const Project = require('./Project');
-    const Ticket = require('./Ticket');
-    const Comment = require('./Comment');
+    const Organisation = require('../organisations/organisations.model');
+    const Project = require('../projects/projects.model');
+    const Ticket = require('../tickets/tickets.model');
+    const Comment = require('../comments/comments.model');
 
     return {
       organisations_owned: {
@@ -57,8 +62,8 @@ class User extends Model {
         join: {
           from: `${tableNames.user}.id`,
           through: {
-            from: `${tableNames.user}_${tableNames.organisation}.${tableNames.user}_id`,
-            to: `${tableNames.user}_${tableNames.organisation}.${tableNames.organisation}_id`,
+            from: `${tableNames.user_organisation}.${tableNames.user}_id`,
+            to: `${tableNames.user_organisation}.${tableNames.organisation}_id`,
           },
           to: `${tableNames.organisation}.id`,
         },
@@ -70,8 +75,8 @@ class User extends Model {
         join: {
           from: `${tableNames.user}.id`,
           through: {
-            from: `${tableNames.user}_${tableNames.project}.${tableNames.user}_id`,
-            to: `${tableNames.user}_${tableNames.project}.${tableNames.project}_id`,
+            from: `${tableNames.user_project}.${tableNames.user}_id`,
+            to: `${tableNames.user_project}.${tableNames.project}_id`,
           },
           to: `${tableNames.project}.id`,
         },

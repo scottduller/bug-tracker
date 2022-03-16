@@ -8,7 +8,7 @@ const {
   getOrganisationById,
   updateOrganisationById,
   deleteOrganisationById,
-} = require('../controllers/organisationController');
+} = require('./organisations.controllers');
 
 router.route('/').post(createOrganisation).get(getOrganisations);
 

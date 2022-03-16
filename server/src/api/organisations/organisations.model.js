@@ -1,6 +1,7 @@
 /* eslint-disable global-require */
 const { Model } = require('objection');
 
+const schema = require('./organisations.schema.json');
 const tableNames = require('../../constants/tableNames');
 
 class Organisation extends Model {
@@ -8,10 +9,14 @@ class Organisation extends Model {
     return tableNames.organisation;
   }
 
+  static get jsonSchema() {
+    return schema;
+  }
+
   static get relationMappings() {
-    const User = require('./User');
-    const Project = require('./Project');
-    const Status = require('./Status');
+    const User = require('../users/users.model');
+    const Project = require('../projects/projects.model');
+    const Status = require('../statuses/statuses.model');
 
     return {
       owner: {
@@ -28,8 +33,8 @@ class Organisation extends Model {
         join: {
           from: `${tableNames.organisation}.id`,
           through: {
-            from: `${tableNames.user}_${tableNames.organisation}.${tableNames.organisation}_id`,
-            to: `${tableNames.user}_${tableNames.organisation}.${tableNames.user}_id`,
+            from: `${tableNames.user_organisation}.${tableNames.organisation}_id`,
+            to: `${tableNames.user_organisation}.${tableNames.user}_id`,
           },
           to: `${tableNames.user}.id`,
         },

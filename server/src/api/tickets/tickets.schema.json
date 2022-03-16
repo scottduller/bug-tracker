@@ -1,0 +1,41 @@
+{
+  "required": [
+    "name",
+    "description",
+    "owner_id",
+    "project_id",
+    "status_id",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "example": "Project name"
+    },
+    "description": {
+      "type": "string",
+      "example": "Project description"
+    },
+    "owner_id": {
+      "type": "number",
+      "example": "3"
+    },
+    "project_id": {
+      "type": "number",
+      "example": "3"
+    },
+    "status_id": {
+      "type": "number",
+      "example": "3"
+    },
+    "created_at": {
+      "type": "string",
+      "example": "Date"
+    },
+    "updated_at": {
+      "type": "string",
+      "example": "Date"
+    }
+  }
+}

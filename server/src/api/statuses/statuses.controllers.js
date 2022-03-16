@@ -1,5 +1,5 @@
 const asyncHandler = require('express-async-handler');
-const Status = require('../models/Status');
+const Status = require('./statuses.model');
 
 const errMsgs = {
   notFound: 'Status not found.',

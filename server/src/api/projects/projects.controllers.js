@@ -1,5 +1,5 @@
 const asyncHandler = require('express-async-handler');
-const Project = require('../models/Project');
+const Project = require('./projects.model');
 
 const errMsgs = {
   notFound: 'Project not found.',

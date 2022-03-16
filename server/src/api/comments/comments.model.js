@@ -1,6 +1,7 @@
 /* eslint-disable global-require */
 const { Model } = require('objection');
 
+const schema = require('./comments.schema.json');
 const tableNames = require('../../constants/tableNames');
 
 class Comment extends Model {
@@ -8,9 +9,13 @@ class Comment extends Model {
     return tableNames.comment;
   }
 
+  static get jsonSchema() {
+    return schema;
+  }
+
   static get relationMappings() {
-    const User = require('./User');
-    const Ticket = require('./Ticket');
+    const User = require('../users/users.model');
+    const Ticket = require('../tickets/tickets.model');
 
     return {
       owner: {
@@ -29,20 +34,20 @@ class Comment extends Model {
           to: `${tableNames.ticket}.id`,
         },
       },
-      children: {
-        relation: Model.HasManyRelation,
-        modelClass: Comment,
-        join: {
-          from: `${tableNames.comment}.id`,
-          to: `${tableNames.comment}.parent_id`,
-        },
-      },
       parent: {
         relation: Model.BelongsToOneRelation,
         modelClass: Comment,
         join: {
           from: `${tableNames.comment}.parent_id`,
           to: `${tableNames.comment}.id`,
+        },
+      },
+      children: {
+        relation: Model.HasManyRelation,
+        modelClass: Comment,
+        join: {
+          from: `${tableNames.comment}.id`,
+          to: `${tableNames.comment}.parent_id`,
         },
       },
     };

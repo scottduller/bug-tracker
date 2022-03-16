@@ -1,0 +1,51 @@
+{
+  "required": [
+    "first_name",
+    "last_name",
+    "bio",
+    "email",
+    "password",
+    "first_login",
+    "last_login",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "first_name": {
+      "type": "string",
+      "example": "John"
+    },
+    "Last_name": {
+      "type": "string",
+      "example": "Smith"
+    },
+    "bio": {
+      "type": "string",
+      "example": "This is a bio"
+    },
+    "email": {
+      "type": "string",
+      "example": "johnsmith@email.com"
+    },
+    "password": {
+      "type": "string",
+      "example": "password"
+    },
+    "first_login": {
+      "type": "boolean",
+      "example": "true"
+    },
+    "last_login": {
+      "type": "string",
+      "example": "Date"
+    },
+    "created_at": {
+      "type": "string",
+      "example": "Date"
+    },
+    "updated_at": {
+      "type": "string",
+      "example": "Date"
+    }
+  }
+}

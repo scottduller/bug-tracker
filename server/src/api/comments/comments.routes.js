@@ -8,7 +8,7 @@ const {
   getCommentById,
   updateCommentById,
   deleteCommentById,
-} = require('../controllers/commentController');
+} = require('./comments.controllers');
 
 router.route('/').post(createComment).get(getComments);
 

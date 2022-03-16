@@ -8,7 +8,7 @@ const {
   getProjectById,
   updateProjectById,
   deleteProjectById,
-} = require('../controllers/projectController');
+} = require('./projects.controllers');
 
 router.route('/').post(createProject).get(getProjects);
 

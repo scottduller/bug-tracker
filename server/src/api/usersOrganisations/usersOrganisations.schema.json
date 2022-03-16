@@ -1,0 +1,13 @@
+{
+  "required": ["user_id", "organisation_id"],
+  "properties": {
+    "user_id": {
+      "type": "number",
+      "example": "3"
+    },
+    "organisation_id": {
+      "type": "number",
+      "example": "3"
+    }
+  }
+}

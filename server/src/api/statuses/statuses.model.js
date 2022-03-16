@@ -1,6 +1,7 @@
 /* eslint-disable global-require */
 const { Model } = require('objection');
 
+const schema = require('./statuses.schema.json');
 const tableNames = require('../../constants/tableNames');
 
 class Status extends Model {
@@ -8,10 +9,14 @@ class Status extends Model {
     return tableNames.status;
   }
 
+  static get jsonSchema() {
+    return schema;
+  }
+
   static get relationMappings() {
-    const Organisation = require('./Organisation');
-    const Project = require('./Project');
-    const Ticket = require('./Ticket');
+    const Organisation = require('../organisations/organisations.model');
+    const Project = require('../projects/projects.model');
+    const Ticket = require('../tickets/tickets.model');
 
     return {
       organisation: {

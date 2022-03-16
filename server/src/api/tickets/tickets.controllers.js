@@ -1,5 +1,5 @@
 const asyncHandler = require('express-async-handler');
-const Ticket = require('../models/Ticket');
+const Ticket = require('./tickets.model');
 
 const errMsgs = {
   notFound: 'Ticket not found.',

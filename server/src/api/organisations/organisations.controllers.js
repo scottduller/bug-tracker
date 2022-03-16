@@ -1,5 +1,5 @@
 const asyncHandler = require('express-async-handler');
-const Organisation = require('../models/Organisation');
+const Organisation = require('./organisations.model');
 
 const errMsgs = {
   notFound: 'Organisation not found.',

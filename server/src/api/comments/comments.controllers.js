@@ -1,5 +1,5 @@
 const asyncHandler = require('express-async-handler');
-const Comment = require('../models/Comment');
+const Comment = require('./comments.model');
 
 const errMsgs = {
   notFound: 'Comment not found.',

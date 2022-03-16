@@ -1,0 +1,35 @@
+{
+  "required": [
+    "description",
+    "owner_id",
+    "ticket_id",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "description": {
+      "type": "string",
+      "example": "Project description"
+    },
+    "owner_id": {
+      "type": "number",
+      "example": "3"
+    },
+    "ticket_id": {
+      "type": "number",
+      "example": "3"
+    },
+    "parent_id": {
+      "type": "number",
+      "example": "3"
+    },
+    "created_at": {
+      "type": "string",
+      "example": "Date"
+    },
+    "updated_at": {
+      "type": "string",
+      "example": "Date"
+    }
+  }
+}

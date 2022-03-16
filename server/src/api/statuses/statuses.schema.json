@@ -1,0 +1,25 @@
+{
+  "required": ["status", "created_at", "updated_at"],
+  "properties": {
+    "status": {
+      "type": "string",
+      "example": "Status name"
+    },
+    "organisation_id": {
+      "type": "number",
+      "example": "3"
+    },
+    "project_id": {
+      "type": "number",
+      "example": "3"
+    },
+    "created_at": {
+      "type": "string",
+      "example": "Date"
+    },
+    "updated_at": {
+      "type": "string",
+      "example": "Date"
+    }
+  }
+}
