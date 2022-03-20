@@ -10,12 +10,14 @@ const {
   deleteCommentById,
 } = require('./comments.controllers');
 
+const { protect } = require('../../middleware/authHandler');
+
 router.route('/').post(createComment).get(getComments);
 
 router
   .route('/:id')
-  .get(getCommentById)
-  .put(updateCommentById)
-  .delete(deleteCommentById);
+  .get(protect, getCommentById)
+  .put(protect, updateCommentById)
+  .delete(protect, deleteCommentById);
 
 module.exports = router;

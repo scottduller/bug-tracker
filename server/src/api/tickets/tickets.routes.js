@@ -10,12 +10,14 @@ const {
   deleteTicketById,
 } = require('./tickets.controllers');
 
-router.route('/').post(createTicket).get(getTickets);
+const { protect } = require('../../middleware/authHandler');
+
+router.route('/').post(protect, createTicket).get(protect, getTickets);
 
 router
   .route('/:id')
-  .get(getTicketById)
-  .put(updateTicketById)
-  .delete(deleteTicketById);
+  .get(protect, getTicketById)
+  .put(protect, updateTicketById)
+  .delete(protect, deleteTicketById);
 
 module.exports = router;

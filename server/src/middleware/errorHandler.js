@@ -13,9 +13,8 @@ const errorHandler = (error, req, res, next) => {
     res.statusCode === 200 ? errorTypes[error.name] || 500 : res.statusCode;
   res.status(statusCode);
   res.json({
-    status: statusCode,
     message: errorMessages[error.name] || error.message,
-    stack: process.env.NODE_ENV === 'production' ? '🥞' : error.stack,
+    stack: process.env.NODE_ENV === 'production' ? null : error.stack,
     errors: error.errors || undefined,
   });
 };

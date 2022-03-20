@@ -10,12 +10,14 @@ const {
   deleteProjectById,
 } = require('./projects.controllers');
 
-router.route('/').post(createProject).get(getProjects);
+const { protect } = require('../../middleware/authHandler');
+
+router.route('/').post(protect, createProject).get(protect, getProjects);
 
 router
   .route('/:id')
-  .get(getProjectById)
-  .put(updateProjectById)
-  .delete(deleteProjectById);
+  .get(protect, getProjectById)
+  .put(protect, updateProjectById)
+  .delete(protect, deleteProjectById);
 
 module.exports = router;

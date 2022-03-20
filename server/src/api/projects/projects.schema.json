@@ -1,12 +1,5 @@
 {
-  "required": [
-    "name",
-    "description",
-    "owner_id",
-    "organisation_id",
-    "created_at",
-    "updated_at"
-  ],
+  "required": ["name", "description", "owner_id", "organisation_id"],
   "properties": {
     "name": {
       "type": "string",

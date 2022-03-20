@@ -1,11 +1,5 @@
 {
-  "required": [
-    "description",
-    "owner_id",
-    "ticket_id",
-    "created_at",
-    "updated_at"
-  ],
+  "required": ["description", "owner_id", "ticket_id"],
   "properties": {
     "description": {
       "type": "string",

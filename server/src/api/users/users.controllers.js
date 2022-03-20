@@ -8,6 +8,7 @@ const User = require('./users.model');
 const errMsgs = {
   notFound: 'User not found.',
   invalidCredentials: 'User credential invalid.',
+  userExists: 'Email already registered',
 };
 
 /**
@@ -27,6 +28,7 @@ const getUsers = asyncHandler(async (req, res) => {
     'first_login',
     'last_login'
   );
+
   res.json(users);
 });
 
@@ -41,11 +43,11 @@ const loginUser = asyncHandler(async (req, res) => {
     .select('id', 'first_name', 'last_name', 'email', 'password')
     .where('email', email)
     .first();
-  console.log(user);
 
   if (user && bcrypt.compareSync(password, user.password)) {
     const token = jwt.sign(
       {
+        id: user.id,
         firstName: user.first_name,
         lastName: user.last_name,
         email: user.email,
@@ -55,6 +57,14 @@ const loginUser = asyncHandler(async (req, res) => {
         expiresIn: '2h',
       }
     );
+
+    console.log({
+      id: user.id,
+      firstName: user.first_name,
+      lastName: user.last_name,
+      email: user.email,
+      token,
+    });
 
     res.json({
       id: user.id,
@@ -75,13 +85,21 @@ const loginUser = asyncHandler(async (req, res) => {
  * @access  Public
  */
 const registerUser = asyncHandler(async (req, res) => {
+  const strongPasswordRegex =
+    /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+  const stringPasswordError = new Error(
+    'Password must be strong. At least one upper case alphabet. At least one lower case alphabet. At least one digit. At least one special character. Minimum eight in length'
+  );
+
   const schema = Joi.object({
-    firstName: Joi.string().min(3).required(),
-    lastName: Joi.string().min(3).required(),
+    first_name: Joi.string().min(3).required(),
+    last_name: Joi.string().min(3).required(),
     email: Joi.string().email(),
     password: Joi.string()
-      .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*d)[a-zA-Zd]{8,}$/)
+      .regex(strongPasswordRegex)
+      .error(stringPasswordError)
       .required(),
+    bio: Joi.string().min(0).max(300).required(),
   });
 
   const { error } = schema.validate(req.body);
@@ -91,19 +109,30 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new Error(error);
   }
 
+  const user = await User.query().where('email', req.body.email).first();
+
+  if (user) {
+    res.status(409);
+    throw new Error(errMsgs.userExists);
+  }
+
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
   try {
     const data = await User.query().insert({
-      firstName: req.body.first_name,
-      lastName: req.body.last_name,
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
       email: req.body.email,
       password: hashedPassword,
+      bio: req.body.bio,
     });
+
+    console.log(data);
 
     const token = jwt.sign(
       {
+        id: data.id,
         firstName: data.first_name,
         lastName: data.last_name,
         email: data.email,
@@ -118,11 +147,12 @@ const registerUser = asyncHandler(async (req, res) => {
       firstName: data.first_name,
       lastName: data.last_name,
       email: data.email,
+      bio: data.bio,
       token,
     });
   } catch (err) {
     res.status(422);
-    throw new Error(err.constrant);
+    throw new Error(err);
   }
 });
 
@@ -132,6 +162,8 @@ const registerUser = asyncHandler(async (req, res) => {
  * @access  Private
  */
 const getUserById = asyncHandler(async (req, res) => {
+  console.log('hit');
+
   const user = await User.query()
     .findById(req.params.id)
     .select(
@@ -152,6 +184,30 @@ const getUserById = asyncHandler(async (req, res) => {
     res.status(404);
     throw new Error(errMsgs.notFound);
   }
+});
+
+/**
+ * @desc    Get logged in users organisations
+ * @route   GET api/users/:id/organisations
+ * @access  Private
+ */
+const getUsersOrganisations = asyncHandler(async (req, res) => {
+  const organisations = await User.relatedQuery('organisations').for(
+    req.user.id
+  );
+  res.json(organisations);
+});
+
+/**
+ * @desc    Get a users organisations by ID
+ * @route   GET api/users/:id/organisations
+ * @access  Private
+ */
+const getUsersOrganisationsById = asyncHandler(async (req, res) => {
+  const organisations = await User.relatedQuery('organisations').for(
+    req.params.id
+  );
+  res.json(organisations);
 });
 
 /**
@@ -225,6 +281,8 @@ module.exports = {
   registerUser,
   getUsers,
   getUserById,
+  getUsersOrganisations,
+  getUsersOrganisationsById,
   updateUserById,
   deleteUserById,
 };

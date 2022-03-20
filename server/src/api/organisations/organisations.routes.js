@@ -10,12 +10,17 @@ const {
   deleteOrganisationById,
 } = require('./organisations.controllers');
 
-router.route('/').post(createOrganisation).get(getOrganisations);
+const { protect } = require('../../middleware/authHandler');
+
+router
+  .route('/')
+  .post(protect, createOrganisation)
+  .get(protect, getOrganisations);
 
 router
   .route('/:id')
-  .get(getOrganisationById)
-  .put(updateOrganisationById)
-  .delete(deleteOrganisationById);
+  .get(protect, getOrganisationById)
+  .put(protect, updateOrganisationById)
+  .delete(protect, deleteOrganisationById);
 
 module.exports = router;

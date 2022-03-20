@@ -1,11 +1,11 @@
 const express = require('express');
 
-const users = require('./routes/userRoutes');
-const organisations = require('./routes/organisationRoutes');
-const projects = require('./routes/projectRoutes');
-const tickets = require('./routes/ticketRoutes');
-const statuses = require('./routes/statusRoutes');
-const comments = require('./routes/commentRoutes');
+const users = require('./users/users.routes');
+const organisations = require('./organisations/organisations.routes');
+const projects = require('./projects/projects.routes');
+const tickets = require('./statuses/statuses.routes');
+const statuses = require('./tickets/tickets.routes');
+const comments = require('./comments/comments.routes');
 
 const router = express.Router();
 

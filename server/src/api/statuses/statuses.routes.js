@@ -10,12 +10,14 @@ const {
   deleteStatusById,
 } = require('./statuses.controllers');
 
-router.route('/').post(createStatus).get(getStatuses);
+const { protect } = require('../../middleware/authHandler');
+
+router.route('/').post(protect, createStatus).get(protect, getStatuses);
 
 router
   .route('/:id')
-  .get(getStatusById)
-  .put(updateStatusById)
-  .delete(deleteStatusById);
+  .get(protect, getStatusById)
+  .put(protect, updateStatusById)
+  .delete(protect, deleteStatusById);
 
 module.exports = router;

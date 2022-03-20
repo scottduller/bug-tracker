@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
   });
 });
 
-app.use('/api/v1', api);
+app.use('/api', api);
 
 app.use(notFound);
 app.use(errorHandler);

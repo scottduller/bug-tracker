@@ -7,17 +7,25 @@ const {
   registerUser,
   getUsers,
   getUserById,
+  getUsersOrganisations,
+  getUsersOrganisationsById,
   updateUserById,
   deleteUserById,
 } = require('./users.controllers');
 
-router.route('/').post(registerUser).get(getUsers);
+const { protect } = require('../../middleware/authHandler');
+
+router.route('/').post(registerUser).get(protect, getUsers);
 
 router
   .route('/:id')
-  .get(getUserById)
-  .put(updateUserById)
-  .delete(deleteUserById);
+  .get(protect, getUserById)
+  .put(protect, updateUserById)
+  .delete(protect, deleteUserById);
+
+router.route('/:id/organisations').get(protect, getUsersOrganisationsById);
+
+router.route('/organisations').get(protect, getUsersOrganisations);
 
 router.route('/login').post(loginUser);
 

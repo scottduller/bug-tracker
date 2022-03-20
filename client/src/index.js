@@ -1,12 +1,39 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+import { render } from 'react-dom';
+import {
+	BrowserRouter as Router,
+	Routes,
+	Route,
+} from 'react-router-dom';
+
 import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
-	<React.StrictMode>
-		<App />
-	</React.StrictMode>,
+import App from './App';
+import Register from './pages/Register';
+import Login from './pages/Login';
+
+import { CssBaseline, TextField } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+import './index.css';
+
+const darkTheme = createTheme({
+	palette: {
+		mode: 'dark',
+	},
+});
+
+render(
+	<ThemeProvider theme={darkTheme}>
+		<CssBaseline />
+		<Router>
+			<Routes>
+				<Route path='register' element={<Register />} />
+				<Route path='login' element={<Login />} />
+				<Route path='/' element={<App />} />
+			</Routes>
+		</Router>
+	</ThemeProvider>,
 	document.getElementById('root')
 );
 
