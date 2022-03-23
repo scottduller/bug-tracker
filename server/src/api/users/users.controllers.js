@@ -11,9 +11,34 @@ const errMsgs = {
   userExists: 'Email already registered',
 };
 
+// @route    GET api/users
+// @desc     Get user by token
+// @access   Private
+const getLoggedInUser = asyncHandler(async (req, res) => {
+  try {
+    const user = await User.query()
+      .findById(req.user.id)
+      .select(
+        'id',
+        'created_at',
+        'updated_at',
+        'first_name',
+        'last_name',
+        'bio',
+        'email',
+        'first_login',
+        'last_login'
+      );
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 /**
  * @desc    Get all users
- * @route   GET api/users
+ * @route   GET api/users/all
  * @access  Private
  */
 const getUsers = asyncHandler(async (req, res) => {
@@ -277,6 +302,7 @@ const deleteUserById = asyncHandler(async (req, res) => {
 });
 
 module.exports = {
+  getLoggedInUser,
   loginUser,
   registerUser,
   getUsers,

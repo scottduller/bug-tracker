@@ -11,11 +11,12 @@ const {
   getUsersOrganisationsById,
   updateUserById,
   deleteUserById,
+  getLoggedInUser,
 } = require('./users.controllers');
 
 const { protect } = require('../../middleware/authHandler');
 
-router.route('/').post(registerUser).get(protect, getUsers);
+router.route('/').post(registerUser).get(protect, getLoggedInUser);
 
 router
   .route('/:id')
@@ -24,6 +25,8 @@ router
   .delete(protect, deleteUserById);
 
 router.route('/:id/organisations').get(protect, getUsersOrganisationsById);
+
+router.route('/all').get(protect, getUsers);
 
 router.route('/organisations').get(protect, getUsersOrganisations);
 
