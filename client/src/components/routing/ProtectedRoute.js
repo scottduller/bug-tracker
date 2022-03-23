@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Navigate } from 'react-router-dom';
-import { login } from '../../context/auth/authActions';
 import { useAuth } from '../../context/auth/AuthState';
 
 const PrivateRoute = ({ component: Component }) => {

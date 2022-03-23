@@ -16,7 +16,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import './index.css';
 import AuthState from './context/auth/AuthState';
-import { login } from './context/auth/authActions';
 import Home from './pages/Home';
 import setAuthToken from './utils/setAuthToken';
 
